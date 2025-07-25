@@ -75,6 +75,7 @@ class AppImageView(Ui_MainWindow):
 
     def img_show(self, option):
         if self.img_list:
+            self.listView.setCurrentIndex(self.model.index(self.img_idx, 0))
             try:
                 self.img_name.setText(f" {self.img_list[self.img_idx]} ")
                 self.img_idx_now.setText(str(self.img_idx + 1))
