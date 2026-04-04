@@ -1,5 +1,10 @@
 <h1 align="center">图片查看工具</h1>
 
+## 打包可执行文件
+```bash
+pyinstaller -Fw -i assets/image/logo.png --path . app.py -n ImageView
+```
+
 ## 快捷键
  - `Left` 查看上一张图片
  - `Right` 查看下一张图片
