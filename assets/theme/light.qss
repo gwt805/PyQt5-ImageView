@@ -1,0 +1,271 @@
+MinimizeButton {
+    qproperty-normalColor: black;
+    qproperty-normalBackgroundColor: transparent;
+    qproperty-hoverColor: black;
+    qproperty-hoverBackgroundColor: rgba(0, 0, 0, 26);
+    qproperty-pressedColor: black;
+    qproperty-pressedBackgroundColor: rgba(0, 0, 0, 51)
+}
+
+MaximizeButton {
+    qproperty-normalColor: black;
+    qproperty-normalBackgroundColor: transparent;
+    qproperty-hoverColor: black;
+    qproperty-hoverBackgroundColor: rgba(0, 0, 0, 26);
+    qproperty-pressedColor: black;
+    qproperty-pressedBackgroundColor: rgba(0, 0, 0, 51)
+}
+
+CloseButton {
+    qproperty-normalColor: black;
+    qproperty-normalBackgroundColor: transparent;
+}
+
+#MainApp * {
+    font-family: "Segoe UI", "Microsoft YaHei", "SimSun", sans-serif; /* 跨平台字体兼容 */
+    background-color: #F0F4F9;
+    color: black;
+}
+#MainApp {
+    background-color: #F0F4F9;
+}
+/* 滚动条 */
+QScrollBar:vertical {
+    background: transparent;          /* 轨道透明，与父容器融为一体 */
+    width: 10px;
+    margin: 0px;
+    border: none;
+}
+
+QScrollBar::handle:vertical {
+    background: #cbd5e1;   /* 默认：半透明白 */
+    height: 10px;
+    border-radius: 5px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background: #94a3b8;   /* 悬停：提亮 */
+}
+
+QScrollBar::handle:vertical:pressed {
+    background: #8593a7;   /* 按下：更亮，提供按压反馈 */
+}
+
+/* ── 上下箭头区域：彻底隐藏 ── */
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical {
+    height: 0px;
+    border: none;
+    background: none;
+}
+
+/* ── 滚动条与水平滚动条交汇的右下角方块：隐藏 ── */
+QScrollBar::corner {
+    background: transparent;
+    border: none;
+    width: 0px;
+    height: 0px;
+}
+
+/* ── 水平滚动条（如果有的话，保持一致） ── */
+QScrollBar:horizontal {
+    background: transparent;
+    height: 10px;
+    margin: 0px;
+    border: none;
+}
+
+QScrollBar::handle:horizontal {
+    background: #cbd5e1;
+    width: 36px;
+    border-radius: 5px;
+}
+
+QScrollBar::handle:horizontal:hover {
+    background: #94a3b8;
+}
+
+QScrollBar::handle:horizontal:pressed {
+    background: #8593a7;
+}
+
+QScrollBar::add-line:horizontal,
+QScrollBar::sub-line:horizontal {
+    width: 0px;
+    border: none;
+    background: none;
+}
+
+/* ── 页面区域（滑块与箭头之间的背景条） ── */
+QScrollBar::add-page:vertical,
+QScrollBar::sub-page:vertical,
+QScrollBar::add-page:horizontal,
+QScrollBar::sub-page:horizontal {
+    background: none;
+    border: none;
+}
+
+
+/* 目录树 */
+#MainWindow QTreeView {
+    font-size: 12pt;
+    background-color: #F0F4F9;
+    border: 1px solid black;
+    outline: none;
+    selection-background-color: transparent;
+}
+
+#MainWindow QTreeWidget::item:selected {
+    background-color: #CBD5E1;
+    color: #000000;
+    border: none;
+}
+
+#MainWindow QTreeWidget::item:selected:!active {
+    background-color: #CBD5E1;
+    color: #000000;
+    border: none;
+}
+QTreeWidget::item:selected {
+    border: none;
+    background: transparent;
+}
+
+QTreeWidget::item:focus {
+    border: none;
+}
+
+QTreeWidget::item:hover {
+    background-color: #E7EAEF;
+    color: #000000;
+    border: none;
+}
+
+QTreeWidget::item:selected:hover {
+    background-color: #E7EAEF;
+    color: #000000;
+    border: none;
+}
+
+/* 目录树连接线 */
+QTreeView::branch:has-siblings:!adjoins-item {
+    border-image: url(:/image/light/vline.png) 0;
+}
+
+QTreeView::branch:has-siblings:adjoins-item {
+    border-image: url(:/image/light/branch-more.png) 0;
+}
+
+QTreeView::branch:!has-children:!has-siblings:adjoins-item {
+    border-image: url(:/image/light/branch-end.png) 0;
+}
+
+QTreeView::branch:has-children:!has-siblings:closed,
+QTreeView::branch:closed:has-children:has-siblings {
+        border-image: none;
+        image: url(:/image/light/branch-closed.png);
+}
+
+QTreeView::branch:open:has-children:!has-siblings,
+QTreeView::branch:open:has-children:has-siblings  {
+        border-image: none;
+        image: url(:/image/light/branch-open.png);
+}
+
+
+/* 按钮 */
+#MainWindow QToolButton {
+    background-color: #CBD5E1; /* 按钮背景 */
+    color: #334155; /* 按钮文本色 */
+    border-radius: 10px; /* 透明边框 */
+    border: 2px solid transparent; /* 透明边框 */
+}
+#MainWindow QToolButton:hover {
+    background-color: #b5c5da; /* 悬停背景 */
+}
+
+#MainWindow QToolButton:pressed {
+    background-color: #94a3b8; /* 按下背景 */
+}
+
+#MainWindow QSpinBox {
+    background-color: #e2e8f0; /* 下拉框背景 */
+    color: #334155; /* 下拉框文本色 */
+    border: none; /* 透明边框 */
+    border-radius: 10px; /* 透明边框 */
+    font-size: 12pt; /* 文本字号 */
+}
+
+
+/* 下拉框 */
+QComboBox {
+    background: #CBD5E1;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 0 0 0 10px;
+    color: #d8d8d8;
+    font-size: 12pt;
+    height: 25px;
+    width: 68px;
+}
+
+QComboBox:hover {
+    border-color: #505050;
+}
+
+QComboBox:focus {
+    border-color: #505050;
+    outline: none;                    /* 去掉焦点虚线框 */
+}
+
+QComboBox:disabled {
+    background: #232323;
+    color: #555;
+    border-color: #2e2e2e;
+}
+
+/* ── 右侧下拉箭头区域 ── */
+QComboBox::drop-down {
+    width: 0px;
+}
+
+QComboBox QAbstractItemView {
+    background-color: #2b2b2b;
+    border: 1px solid #3a3a3a;
+    outline: none;
+    padding: 4px;
+    /* ▼ 关键：把默认选中色覆盖成和背景一样 */
+    selection-background-color: #94A3B8;
+    selection-color: #d8d8d8;
+}
+
+/* ── 每一项 ── */
+QComboBox QAbstractItemView::item {
+    background-color: transparent;
+    color: #d8d8d8;
+    padding: 10px 14px;
+    border-radius: 4px;
+    height: 50px;
+}
+
+/* QLabel */
+#MainWindow QLabel {
+    font-size: 12pt; /* 文本字号 */
+}
+
+
+/* 菜单 */
+QMenu {
+    font-size: 12pt;
+    padding: 5px 10px;
+    color: black; /* 菜单文本色 */
+}
+
+QMenu::item {
+    padding: 6px 6px;
+    background-color: transparent; /* 菜单背景色 */
+}
+
+QMenu::item:selected {
+    background-color: #94A3B8;
+}

@@ -1,0 +1,31 @@
+<RCC>
+  <qresource prefix="/">
+    <file>theme/dark.qss</file>
+    <file>image/light/branch-closed.png</file>
+    <file>image/light/branch-end.png</file>
+    <file>image/light/branch-more.png</file>
+    <file>image/light/branch-open.png</file>
+    <file>image/light/vline.png</file>
+    <file>image/dark/branch-closed.png</file>
+    <file>image/dark/branch-end.png</file>
+    <file>image/dark/branch-more.png</file>
+    <file>image/dark/branch-open.png</file>
+    <file>image/dark/vline.png</file>
+    <file>theme/light.qss</file>
+    <file>image/dark/dark.png</file>
+    <file>image/dark/light.png</file>
+    <file>image/dark/folder.png</file>
+    <file>image/light/folder.png</file>
+    <file>image/light/dark.png</file>
+    <file>image/light/light.png</file>
+    <file>image/logo.png</file>
+    <file>image/dark/delete.png</file>
+    <file>image/dark/left.png</file>
+    <file>image/dark/right.png</file>
+    <file>image/dark/rotate.png</file>
+    <file>image/light/delete.png</file>
+    <file>image/light/left.png</file>
+    <file>image/light/right.png</file>
+    <file>image/light/rotate.png</file>
+  </qresource>
+</RCC>
