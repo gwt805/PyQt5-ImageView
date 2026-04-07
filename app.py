@@ -1,9 +1,13 @@
 import sys
+from PyQt5.QtCore import Qt
 from logic.main import ImageView
 from PyQt5.QtWidgets import QApplication, QMessageBox
 
 def main():
     try:
+        QApplication.setHighDpiScaleFactorRoundingPolicy(Qt.HighDpiScaleFactorRoundingPolicy.PassThrough)
+        QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
+        QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps)
         app = QApplication(sys.argv)
         window = ImageView()
         sys.exit(app.exec_())
