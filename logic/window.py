@@ -6,7 +6,7 @@ from ui.mainui import Ui_MainWindow
 from PyQt5.QtGui import QIcon, QPixmap
 from components.label import ScaleLabel
 from config.config import config, siganl
-from PyQt5.QtWidgets import QFileDialog, QTreeWidgetItem
+from PyQt5.QtWidgets import QAbstractItemView, QFileDialog, QTreeWidgetItem
 
 class MainWindow(Ui_MainWindow):
     def __init__(self, parent=None):
@@ -20,6 +20,8 @@ class MainWindow(Ui_MainWindow):
             self.btn_delete: "delete.png"
         }
         self.set_theme()
+
+        self.treeWidget.setSelectionMode(QAbstractItemView.MultiSelection) # 设置树形控件为多选模式
 
         self.scalelabel = ScaleLabel(self)
         self.scalelabel.hide()
@@ -146,7 +148,7 @@ class MainWindow(Ui_MainWindow):
                     yield entry.path
 
     def load_image_list(self):
-        self.image_list = self.image_list = natsorted(self.scan_images(self.current_path))
+        self.image_list = natsorted(self.scan_images(self.current_path))
         self.label_image_total.setText(str(len(self.image_list)))
         if self.image_list:
             self.input_idx.setMinimum(1)
