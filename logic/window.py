@@ -21,7 +21,7 @@ class MainWindow(Ui_MainWindow):
         }
         self.set_theme()
 
-        self.treeWidget.setSelectionMode(QAbstractItemView.MultiSelection) # 设置树形控件为多选模式
+        self.treeWidget.setSelectionMode(QAbstractItemView.ContiguousSelection) # 设置树形控件为多选模式
 
         self.scalelabel = ScaleLabel(self)
         self.scalelabel.hide()
@@ -82,7 +82,14 @@ class MainWindow(Ui_MainWindow):
     def chose_folder(self):
         self.folder_path = QFileDialog.getExistingDirectory(self, "选择文件夹")
         if self.folder_path:
+            # 清空默认数据
             self.treeWidget.clear()
+            self.label_image_idx.setText("0")
+            self.label_image_total.setText("0")
+            self.imgname.setText("未加载图片")
+            self.input_idx.setMaximum(0)
+            self.graphicsView.loadImage(None)
+
             # 2. 创建最顶层的根节点
             root_item = QTreeWidgetItem(self.treeWidget)
             root_item.setData(0, Qt.UserRole, self.folder_path)
@@ -126,7 +133,7 @@ class MainWindow(Ui_MainWindow):
 
     def on_tree_item_changed(self):
         if len(self.treeWidget.selectedItems()) > 0:
-            self.current_path = self.treeWidget.selectedItems()[0].data(0, Qt.UserRole)
+            self.current_path = [item.data(0, Qt.UserRole) for item in self.treeWidget.selectedItems()]
             self.image_idx = 0
             self.image_list = []
             self.load_image_list()
@@ -148,7 +155,10 @@ class MainWindow(Ui_MainWindow):
                     yield entry.path
 
     def load_image_list(self):
-        self.image_list = natsorted(self.scan_images(self.current_path))
+        all_image_path = set()
+        for item in self.current_path:
+            all_image_path.update(self.scan_images(item))
+        self.image_list = natsorted(list(all_image_path))
         self.label_image_total.setText(str(len(self.image_list)))
         if self.image_list:
             self.input_idx.setMinimum(1)
