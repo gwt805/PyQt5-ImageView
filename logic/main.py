@@ -1,3 +1,4 @@
+import darkdetect
 import style.static_rc
 from PyQt5.QtGui import QIcon
 from .window import MainWindow
@@ -14,7 +15,7 @@ class ImageView(FramelessWindow):
         self.setupUi()
         self.loadTrayMenu()
         self.center_window()
-        self.set_theme(True)
+        self.set_theme(darkdetect.isDark())
         siganl.is_dark.connect(self.set_theme)
         # self.setAttribute(Qt.WA_StyledBackground, True)
         self.show()
@@ -44,8 +45,10 @@ class ImageView(FramelessWindow):
 
     def set_theme(self, is_dark):
         if is_dark:
+            self.main_ui.theme.setCurrentIndex(0)
             self.setStyleSheet(load_style(":/theme/dark.qss"))
         else:
+            self.main_ui.theme.setCurrentIndex(1)
             self.setStyleSheet(load_style(":/theme/light.qss"))
 
     def loadTrayMenu(self):

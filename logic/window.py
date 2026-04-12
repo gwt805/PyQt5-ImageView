@@ -84,11 +84,7 @@ class MainWindow(Ui_MainWindow):
         if self.folder_path:
             # 清空默认数据
             self.treeWidget.clear()
-            self.label_image_idx.setText("0")
-            self.label_image_total.setText("0")
-            self.imgname.setText("未加载图片")
-            self.input_idx.setMaximum(0)
-            self.graphicsView.loadImage(None)
+            self.clear_params()
 
             # 2. 创建最顶层的根节点
             root_item = QTreeWidgetItem(self.treeWidget)
@@ -138,11 +134,7 @@ class MainWindow(Ui_MainWindow):
             self.image_list = []
             self.load_image_list()
         else:
-            self.label_image_idx.setText("0")
-            self.label_image_total.setText("0")
-            self.imgname.setText("未加载图片")
-            self.input_idx.setMaximum(0)
-            self.graphicsView.loadImage(None)
+            self.clear_params()
 
     def scan_images(self, path):
         with os.scandir(path) as entries:
@@ -165,11 +157,7 @@ class MainWindow(Ui_MainWindow):
             self.input_idx.setMaximum(len(self.image_list))
             self.show_image()
         else:
-            self.label_image_idx.setText("0")
-            self.label_image_total.setText("0")
-            self.imgname.setText("未加载图片")
-            self.input_idx.setMaximum(0)
-            self.graphicsView.loadImage(None)
+            self.clear_params()
 
     def image_option(self, option):
         if self.image_list:
@@ -221,6 +209,16 @@ class MainWindow(Ui_MainWindow):
             self.graphicsView.loadImage(self.image_list[self.image_idx])
         else:
             self.status_bar_folder_value.setText("未加载图片")
+
+    def clear_params(self):
+        self.image_list = []
+        self.image_idx = 0
+        self.label_image_idx.setText("0")
+        self.label_image_total.setText("0")
+        self.status_bar_folder_value.setText("")
+        self.imgname.setText("未加载图片")
+        self.input_idx.setMaximum(0)
+        self.graphicsView.loadImage(None)
 
     def eventFilter(self, obj, event):
         if obj is self.treeWidget:
@@ -274,6 +272,8 @@ class MainWindow(Ui_MainWindow):
         elif event.key() == Qt.Key.Key_R:
             self.btn_rotate.setDown(True)
             self.graphicsView.rotate_image()
+        elif event.modifiers() == Qt.ControlModifier and event.key() == Qt.Key.Key_O:
+            self.chose_folder()
     
     def keyReleaseEvent(self, event):
         if event.key() == Qt.Key.Key_Left:

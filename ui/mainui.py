@@ -11,7 +11,7 @@
 import style.static_rc
 from components.canvas import CanvasQG
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+from components.label import ElidedLabel
 class Ui_MainWindow(QtWidgets.QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -21,8 +21,8 @@ class Ui_MainWindow(QtWidgets.QWidget):
         self.setObjectName("MainWindow")
         self.resize(750, 351)
         self.verticalLayout = QtWidgets.QVBoxLayout(self)
-        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
-        self.verticalLayout.setSpacing(0)
+        self.verticalLayout.setContentsMargins(0, 0, 0, 6)
+        self.verticalLayout.setSpacing(6)
         self.verticalLayout.setObjectName("verticalLayout")
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setSpacing(0)

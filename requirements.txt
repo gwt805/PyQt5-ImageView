@@ -1,3 +1,4 @@
 PyQt5
 natsort
+darkdetect
 PyQt5-Frameless-Window
