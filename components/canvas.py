@@ -1,7 +1,7 @@
 import os, uuid, json
 from PyQt5.QtCore import Qt, pyqtSignal, QPointF, QRectF, QLineF
 from PyQt5.QtGui import QPainter, QPixmap, QWheelEvent, QMouseEvent, QTransform, QPainter, QPen, QBrush, QColor, QPolygonF
-from PyQt5.QtWidgets import  QGraphicsScene, QGraphicsView, QGraphicsPixmapItem, QGraphicsWidget, QGraphicsRectItem, QGraphicsPolygonItem
+from PyQt5.QtWidgets import  QAction, QApplication, QGraphicsScene, QGraphicsView, QGraphicsPixmapItem, QGraphicsWidget, QGraphicsRectItem, QGraphicsPolygonItem, QMenu
 
 class CanvasQG(QGraphicsView):
     scaleChanged = pyqtSignal(float)
@@ -82,6 +82,19 @@ class CanvasQG(QGraphicsView):
             view_center = self.viewport().rect().center()
             scene_center = self.mapToScene(view_center)
             self.image_item.setPos(scene_center - self.image_item.boundingRect().center())
+
+    def contextMenuEvent(self, event):
+        context_menu = QMenu(self)
+        copy_action = QAction("复制图片", self)
+        copy_action.triggered.connect(self.copy_image_to_clipboard)
+        context_menu.addAction(copy_action)
+        context_menu.exec_(event.globalPos())
+
+    def copy_image_to_clipboard(self):
+        if self.image_item:
+            pixmap = self.image_item.pixmap()
+            clipboard = QApplication.clipboard()
+            clipboard.setPixmap(pixmap)
 
     def resizeEvent(self, event):
         super().resizeEvent(event)
